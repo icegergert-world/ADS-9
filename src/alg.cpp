@@ -49,7 +49,7 @@ void dfs(const PMNode* node, std::vector<char>& buf,
     if (!buf.empty() && node->key != '*') buf.pop_back();
 }
 
-std::vector<char> factorialDecode(size_t num, 
+std::vector<char> factorialDecode(size_t num,
     const std::vector<char>& alphabet) {
     size_t n = alphabet.size();
     std::vector<size_t> fact(n);
