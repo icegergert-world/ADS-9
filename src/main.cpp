@@ -8,17 +8,15 @@
 using Clock = std::chrono::high_resolution_clock;
 
 template<typename F>
-double measure(F &&func)
-{
+double measure(F &&func) {
     auto t0 = Clock::now();
     func();
     return std::chrono::duration<double, std::milli>(Clock::now()-t0).count();
 }
 
-int main()
-{
+int main() {
     // ======= короткая демонстрация =========================================
-    std::vector<char> in = {'1','2','3'};
+    std::vector<char> in = {'1', '2', '3'};
     PMTree tree(in);
 
     auto all = getAllPerms(tree);
@@ -34,9 +32,9 @@ int main()
     std::cout << "\n\n";
 
     // ======= вычислительный эксперимент ====================================
-    std::mt19937_64 rng(std::random_device{}());
+    std::mt19937_64 rng(std::random_device {}());
 
-    std::vector<int>      Ns   = {4,5,6,7,8,9,10};  // ширина алфавита
+    std::vector<int>      Ns   = {4, 5, 6, 7, 8, 9, 10};
     std::vector<double>   tAll, tP1, tP2;
 
     for (int n : Ns) {
@@ -54,10 +52,10 @@ int main()
         tP1 .push_back(tp1);
         tP2 .push_back(tp2);
 
-        std::cout << "n="<<n
-                  << " getAll="<<ta<<"ms"
-                  << " getPerm1="<<tp1<<"ms"
-                  << " getPerm2="<<tp2<<"ms\n";
+        std::cout << "n=" << n
+                  << " getAll=" << ta << "ms"
+                  << " getPerm1=" << tp1 << "ms"
+                  << " getPerm2=" << tp2 << "ms\n";
     }
     return 0;
 }
