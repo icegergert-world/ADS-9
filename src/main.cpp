@@ -3,10 +3,7 @@
 #include <iostream>
 #include <random>
 #include <fstream>
-#include <matplotlibcpp.h>
 #include "tree.h"
-
-namespace plt = matplotlibcpp;
 
 using Clock = std::chrono::high_resolution_clock;
 
@@ -62,16 +59,5 @@ int main()
                   << " getPerm1="<<tp1<<"ms"
                   << " getPerm2="<<tp2<<"ms\n";
     }
-
-    // -------- график --------------------------------------------------------
-    plt::semilogy(Ns, tAll, "o-", {{"label", "getAllPerms"}});
-    plt::semilogy(Ns, tP1 , "s-", {{"label", "getPerm1"}});
-    plt::semilogy(Ns, tP2 , "^-", {{"label", "getPerm2"}});
-    plt::xlabel("n (|alphabet|)");
-    plt::ylabel("time, ms (log)");
-    plt::legend();
-    plt::grid(true);
-    plt::save("result/plot.png");
-    std::cout << "График сохранён в result/plot.png\n";
     return 0;
 }
