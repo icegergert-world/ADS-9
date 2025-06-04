@@ -1,6 +1,9 @@
 // Copyright 2022 NNTU-CS
 #include <algorithm>
 #include <numeric>
+#include <memory>
+#include <utility>
+#include <vector>
 #include <stdexcept>
 #include  <iostream>
 #include  <fstream>
@@ -36,7 +39,7 @@ namespace {
 
 void dfs(const PMNode* node, std::vector<char>& buf,
          std::vector<std::vector<char>>& out) {
-    if (node->key != '*') buf.push_back(node->key); // '*' – искусственный корень
+    if (node->key != '*') buf.push_back(node->key);
     if (node->child.empty()) {
         out.push_back(buf);
     } else {
@@ -46,8 +49,8 @@ void dfs(const PMNode* node, std::vector<char>& buf,
     if (!buf.empty() && node->key != '*') buf.pop_back();
 }
 
-std::vector<char> factorialDecode(size_t num, const std::vector<char>& alphabet) {
-    // num &ge; 1; алфавит уже отсортирован
+std::vector<char> factorialDecode(size_t num, 
+    const std::vector<char>& alphabet) {
     size_t n = alphabet.size();
     std::vector<size_t> fact(n);
     fact[0] = 1;
